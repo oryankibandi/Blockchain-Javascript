@@ -2,8 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import Blockchain from './blockchain.js';
 import { v4 as uuidv4 } from 'uuid';
-import requestPromise from 'request-promise';
 import axios from 'axios';
+import cors from 'cors';
 
 const nodeAddres = uuidv4().split('-').join('');
 const port = process.argv[2];
@@ -11,6 +11,7 @@ const port = process.argv[2];
 const bitcoin = new Blockchain();
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
